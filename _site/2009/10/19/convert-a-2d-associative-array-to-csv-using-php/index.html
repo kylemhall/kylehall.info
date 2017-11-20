@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+
+    <title>Convert a 2D Associative Array To CSV using PHP</title>
+    <meta name="description" content="Here is a bit of code to convert an array of associative arrays into a CSV file. The first line will be a header line of the key values:" />
+
+  
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen,projection" href="/assets/materialize.css" />
+    <link rel="stylesheet" type="text/css" media="screen,projection" href="/assets/main.css">
+    <link rel="canonical" href="http://localhost:4000/2009/10/19/convert-a-2d-associative-array-to-csv-using-php/" />
+    <!--
+    <link rel="alternate" type="application/rss+xml" title="KyleHall.info" href="/feed.xml" />
+    -->
+  
+    
+</head>
+
+
+  <body>
+
+    <nav class="grey darken-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" class="brand-logo" href="/">KyleHall.info</a>
+    
+    
+
+          <ul class="right hide-on-med-and-down">
+            <li><a href="/">Home </a></li>
+            <li><a href="/projects">My Projects </a></li>
+            <li><a href="/about">About Me </a></li>
+            <li><a href="/contact">Contact Me </a></li>
+            <!--
+            
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/about.html">About Kyle</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/contact.html">Contact</a></li>
+                    
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/projects/koha/koha-offline-circulation.html">Koha Offline Circulation</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/projects/koha.html">Koha</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/projects/libki.html">Libki Kiosk Management System</a></li>
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/projects.html">Projects</a></li>
+                    
+                
+            
+            -->
+          </ul>
+
+          <ul id="nav-mobile" class="side-nav">
+            <li><a href="/">Home </a></li>
+            <li><a href="/projects">My Projects </a></li>
+            <li><a href="/about">About Me </a></li>
+            <li><a href="/contact">Contact Me </a></li>
+            <!--
+            
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/about.html">About Kyle</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/contact.html">Contact</a></li>
+                    
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/projects/koha/koha-offline-circulation.html">Koha Offline Circulation</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/projects/koha.html">Koha</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/projects/libki.html">Libki Kiosk Management System</a></li>
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/projects.html">Projects</a></li>
+                    
+                
+            
+          -->
+          </ul>        
+    </div>
+</nav>
+
+
+
+        <div class="container">
+    <div class="section">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Convert a 2D Associative Array To CSV using PHP</h1>
+        <p class="post-meta">
+          <time datetime="2009-10-19T04:32:19-04:00" itemprop="datePublished">
+            
+            Oct 19, 2009
+          </time>
+          
+            • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">admin</span></span>
+          </p>
+      </header>
+
+      <div class="post-content" itemprop="articleBody">
+        <p>Here is a bit of code to convert an array of associative arrays into a CSV file. The first line will be a header line of the key values:<!--more--></p>
+
+<pre>function to_csv( $array ) {
+ $csv;
+
+ ## Grab the first element to build the header
+ $arr = array_pop( $array );
+ $temp = array();
+ foreach( $arr as $key =&gt; $data ) {
+   $temp[] = $key;
+ }
+ $csv = implode( ',', $temp ) . "n";
+
+ ## Add the data from the first element
+ $csv .= to_csv_line( $arr );
+
+ ## Add the data for the rest
+ foreach( $array as $arr ) {   
+   $csv .= to_csv_line( $arr );
+ }
+
+ return $csv;
+}
+
+function to_csv_line( $array ) {
+ $temp = array();
+ foreach( $array as $elt ) {
+   $temp[] = '"' . addslashes( $elt ) . '"';
+ }
+
+ $string = implode( ',', $temp ) . "n";
+
+ return $string;
+}</pre>
+
+      </div>
+
+      
+    </article>
+    </div>
+</div>
+<script>$('.carousel.carousel-slider').carousel({fullWidth: true});</script>
+
+      <footer class="page-footer grey">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">KyleHall.info</h5>
+          <p class="grey-text text-lighten-4">This site is a place for me to post updates about my projects and whatever else comes to mind.</p>
+        </div>
+        <!--
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        -->
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="https://github.com/kylemhall">Github</a></li>
+            <li><a class="white-text" href="https://twitter.com/kylemhall">Twitter</a></li>
+            <li><a class="white-text" href="https://linkedin.com/in/kylemhallinfo">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div>
+                <!-- Made by <a target="_blank" class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a> -->
+                <span style="text-align: right; float: right">
+                Copyright © 2017 Kyle M Hall
+                </span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+      
+    <!--  Scripts-->                                                                               
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/init.js"></script>
+
+  </body>
+
+</html>
