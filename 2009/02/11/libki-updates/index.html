@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+
+    <title>Libki Updates</title>
+    <meta name="description" content="Hey All," />
+
+  
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen,projection" href="/assets/materialize.css" />
+    <link rel="stylesheet" type="text/css" media="screen,projection" href="/assets/main.css">
+    <link rel="canonical" href="/2009/02/11/libki-updates/" />
+    <!--
+    <link rel="alternate" type="application/rss+xml" title="KyleHall.info" href="/feed.xml" />
+    -->
+  
+    
+</head>
+
+
+  <body>
+
+    <nav class="grey darken-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" class="brand-logo" href="/">KyleHall.info</a>
+    
+    
+
+          <ul class="right hide-on-med-and-down">
+            <li><a href="/">Home </a></li>
+            <li><a href="/projects">My Projects </a></li>
+            <li><a href="/about">About Me </a></li>
+            <li><a href="/contact">Contact Me </a></li>
+            <!--
+            
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/about.html">About Kyle</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/contact.html">Contact</a></li>
+                    
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/projects/koha/koha-offline-circulation.html">Koha Offline Circulation</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/projects/koha.html">Koha</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/projects/libki.html">Libki Kiosk Management System</a></li>
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/projects.html">Projects</a></li>
+                    
+                
+            
+            -->
+          </ul>
+
+          <ul id="nav-mobile" class="side-nav">
+            <li><a href="/">Home </a></li>
+            <li><a href="/projects">My Projects </a></li>
+            <li><a href="/about">About Me </a></li>
+            <li><a href="/contact">Contact Me </a></li>
+            <!--
+            
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/about.html">About Kyle</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/contact.html">Contact</a></li>
+                    
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/projects/koha/koha-offline-circulation.html">Koha Offline Circulation</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/projects/koha.html">Koha</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/projects/libki.html">Libki Kiosk Management System</a></li>
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/projects.html">Projects</a></li>
+                    
+                
+            
+          -->
+          </ul>        
+    </div>
+</nav>
+
+
+
+        <div class="container">
+    <div class="section">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Libki Updates</h1>
+        <p class="post-meta">
+          <time datetime="2009-02-11T09:43:14+00:00" itemprop="datePublished">
+            
+            Feb 11, 2009
+          </time>
+          
+            • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">admin</span></span>
+          </p>
+      </header>
+
+      <div class="post-content" itemprop="articleBody">
+        <p>Hey All,</p>
+
+<p>I’ve been hard at work getting Libki into a form that is more suitable for the general public to use. First, I’ve moved the code from SourceForge’s subversion repo to GitHub, at least for now.</p>
+
+<p>I’ve finished porting the code from using PostgreSQL to MySQL. In addition I’ve been working on the startup scripts that disable hotkeys that could be used to bypass LibKi on Windows clients. These scripts were made with <a href="http://www.autohotkey.com/" target="_blank">AutoHotKey</a>, a wonderful piece of FOSS that was designed for creating Windows shortcuts, but has grown so fast it’s possible to write complete graphical programs using only an AutoHotKey script. These scripts are located in the libki/client/src/windows directory, as they only function on Windows. There are four, each one is slightly different to better suit individual needs.</p>
+
+<ul style="text-align: left;">
+  <li>
+    libki-keylock &#8211; Disables alt-tab, ctrl-alt-del, and many other commands that can be used to gain unauthorised access. With this version the key combo ctrl-alt-shift-L will pop up a password dialog that can disable the script. The password is contained in the file /etc/libki/keylock
+  </li>
+  <li>
+    libki-keylock-nopwd &#8211; The same script without the password unlock feature.
+  </li>
+  <li>
+    libki-keylock-startbutton &#8211; The same as libki-keylock, but this version also disables the start button, so only shortcuts on the desktop can be used to launch programs.
+  </li>
+  <li>
+    libki-keylock-startbutton-nopwd &#8211; The same as above, but without the password unlock feature.
+  </li>
+</ul>
+
+<p>For each of these scripts, there is an executable, and a corrospondingÂ <em>.ahk</em> file which contains the original AutoHotKey script code in case someone would wish to modify the scripts further.</p>
+
+<p>That’s all for now. More updates will be coming soon.</p>
+
+      </div>
+
+      
+    </article>
+    </div>
+</div>
+<script>$('.carousel.carousel-slider').carousel({fullWidth: true});</script>
+
+      <footer class="page-footer grey">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">KyleHall.info</h5>
+          <p class="grey-text text-lighten-4">This site is a place for me to post updates about my projects and whatever else comes to mind.</p>
+        </div>
+        <!--
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        -->
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="https://github.com/kylemhall">Github</a></li>
+            <li><a class="white-text" href="https://twitter.com/kylemhall">Twitter</a></li>
+            <li><a class="white-text" href="https://linkedin.com/in/kylemhallinfo">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div>
+                <!-- Made by <a target="_blank" class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a> -->
+                <span style="text-align: right; float: right">
+                Copyright © 2017 Kyle M Hall
+                </span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+      
+    <!--  Scripts-->                                                                               
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/init.js"></script>
+
+  </body>
+
+</html>
