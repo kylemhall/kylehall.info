@@ -6,8 +6,6 @@ layout: post
 categories:
   - Koha
 ---
-## Koha - An alternative to AllFinesNeedOverride
-
 Do you use SIP2 selfchecks and AllFinesNeedOverride? If so, you've probably noticed that any patrons with fines cannot do self-checkout! Here is an alternative to AllFinesNeedOverride using custom JavaScript so you can disable AllFinesNeedOverride!
 
 ```javascript
