@@ -12,7 +12,8 @@ script:
 - git add *
 - git commit -a -m "Update from master"
 - git remote add github https://$GH_TOKEN@github.com/kylemhall/kylehall.info
-- git push github HEAD:refs/heads/gh-pages -f
+- git pull origin master
+- git push github HEAD:refs/heads/gh-pages
 
 branches:
   only:

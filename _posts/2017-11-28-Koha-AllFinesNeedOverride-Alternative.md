@@ -4,7 +4,7 @@ date: 2017-11-28
 author: Kyle M Hall
 layout: post
 categories:
-  - Kohe
+  - Koha
 ---
 ## Koha - An alternative to AllFinesNeedOverride
 
