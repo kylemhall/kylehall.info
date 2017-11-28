@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+
+    <title>Koha - An alternative to AllFinesNeedOverride</title>
+    <meta name="description" content="Do you use SIP2 selfchecks and AllFinesNeedOverride? If so, you’ve probably noticed that any patrons with fines cannot do self-checkout! Here is an alternati..." />
+
+  
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen,projection" href="/assets/materialize.css" />
+    <link rel="stylesheet" type="text/css" media="screen,projection" href="/assets/main.css">
+    <link rel="canonical" href="/koha/2017/11/28/Koha-AllFinesNeedOverride-Alternative.html" />
+    <!--
+    <link rel="alternate" type="application/rss+xml" title="KyleHall.info" href="/feed.xml" />
+    -->
+  
+    
+</head>
+
+
+  <body>
+
+    <nav class="grey darken-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" class="brand-logo" href="/">KyleHall.info</a>
+    
+    
+
+          <ul class="right hide-on-med-and-down">
+            <li><a href="/">Home </a></li>
+            <li><a href="/projects">My Projects </a></li>
+            <li><a href="/about">About Me </a></li>
+            <li><a href="/contact">Contact Me </a></li>
+            <!--
+            
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/about.html">About Kyle</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/contact.html">Contact</a></li>
+                    
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/projects/koha/koha-offline-circulation.html">Koha Offline Circulation</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/projects/koha.html">Koha</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/projects/libki.html">Libki Kiosk Management System</a></li>
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/projects.html">Projects</a></li>
+                    
+                
+            
+            -->
+          </ul>
+
+          <ul id="nav-mobile" class="side-nav">
+            <li><a href="/">Home </a></li>
+            <li><a href="/projects">My Projects </a></li>
+            <li><a href="/about">About Me </a></li>
+            <li><a href="/contact">Contact Me </a></li>
+            <!--
+            
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/about.html">About Kyle</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/contact.html">Contact</a></li>
+                    
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/projects/koha/koha-offline-circulation.html">Koha Offline Circulation</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/projects/koha.html">Koha</a></li>
+                    
+                
+                    
+                    
+                        <li><a href="/projects/libki.html">Libki Kiosk Management System</a></li>
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                        <li><a href="/projects.html">Projects</a></li>
+                    
+                
+            
+          -->
+          </ul>        
+    </div>
+</nav>
+
+
+
+        <div class="container">
+    <div class="section">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Koha - An alternative to AllFinesNeedOverride</h1>
+        <p class="post-meta">
+          <time datetime="2017-11-28T00:00:00+00:00" itemprop="datePublished">
+            
+            Nov 28, 2017
+          </time>
+          
+            • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Kyle M Hall</span></span>
+          </p>
+      </header>
+
+      <div class="post-content" itemprop="articleBody">
+        <p>Do you use SIP2 selfchecks and AllFinesNeedOverride? If so, you’ve probably noticed that any patrons with fines cannot do self-checkout! Here is an alternative to AllFinesNeedOverride using custom JavaScript so you can disable AllFinesNeedOverride!</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">"a[href^='/cgi-bin/koha/members/pay.pl?borrowernumber=']"</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#circ_circulation_issue input'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'disabled'</span><span class="p">,</span> <span class="s1">'disabled'</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#circ_circulation_issue button'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">"&lt;button id='allow-circulation' class='btn btn-danger'&gt;Patron owes fees&lt;/button&gt;"</span><span class="p">).</span><span class="nx">insertAfter</span><span class="p">(</span><span class="s1">'#circ_circulation_issue button'</span><span class="p">);</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#allow-circulation'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">'#circ_circulation_issue input'</span><span class="p">).</span><span class="nx">removeAttr</span><span class="p">(</span><span class="s1">'disabled'</span><span class="p">);</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">'#circ_circulation_issue button'</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">'#allow-circulation'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Just place that in your IntranetUserJS system preference and you’ll be good to go! This code would also be modified as an alternative for other uses, such as confirming checkouts for patrons with overdues for example.</p>
+
+      </div>
+
+      
+    </article>
+    </div>
+</div>
+<script>$('.carousel.carousel-slider').carousel({fullWidth: true});</script>
+
+      <footer class="page-footer grey">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">KyleHall.info</h5>
+          <p class="grey-text text-lighten-4">This site is a place for me to post updates about my projects and whatever else comes to mind.</p>
+        </div>
+        <!--
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        -->
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="https://github.com/kylemhall">Github</a></li>
+            <li><a class="white-text" href="https://twitter.com/kylemhall">Twitter</a></li>
+            <li><a class="white-text" href="https://linkedin.com/in/kylemhallinfo">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div>
+                <!-- Made by <a target="_blank" class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a> -->
+                <span style="text-align: right; float: right">
+                Copyright © 2017 Kyle M Hall
+                </span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+      
+    <!--  Scripts-->                                                                               
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/init.js"></script>
+
+  </body>
+
+</html>
