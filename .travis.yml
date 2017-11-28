@@ -7,13 +7,16 @@ before_script:
 
 script:
 - bundle exec jekyll build
-- cd _site
+- mkdir site
+- cd site
 - git init
+- git remote add origin https://$GH_TOKEN@github.com/kylemhall/kylehall.info
+- git fetch origin
+- git checkout origin/gh-pages
+- cp -r ../_site/* .
 - git add *
 - git commit -a -m "Update from master"
-- git remote add github https://$GH_TOKEN@github.com/kylemhall/kylehall.info
-- git pull github gh-pages
-- git push github HEAD:refs/heads/gh-pages
+- git push origin HEAD:refs/heads/gh-pages
 
 branches:
   only:
